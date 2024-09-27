@@ -1,0 +1,22 @@
+# .goreleaser.yml
+project_name: envmerger
+release:
+  github:
+    owner: rjshrjndrn
+    name: simple-tools
+builds:
+  - main: ./envmerger/main.go
+    env:
+      - CGO_ENABLED=0
+    ldflags:
+      - -s -w -X main.appVersion={{.Version}}
+# brews:
+#   - name: templater
+#     repository:
+#       owner: rjshrjndrn
+#       name: homebrew-tap
+#     url_template: "https://github.com/rjshrjndrn/templater/releases/download/{{ .Tag }}/templater_{{ .Version }}_{{ .Os }}_{{ .Arch }}.tar.gz"
+#     homepage: "https://github.com/rjshrjndrn/templater"
+#     description: "A templating tool using helm flavoured sprig"
+#     test: |
+#       system "#{bin}/templater --version"
